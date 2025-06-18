@@ -545,10 +545,11 @@ class Browser:
             actions.extend([down, up])
         elif event == "dblclick":
             actions.extend([down, up, down, up])
-        elif event == "mouseenter":
-            actions.insert(0, {"type": "pointerMove", "x": 0, "y": 0, "origin": "viewport"})
+        elif event in ["mousemove", "mouseenter"]:
+            pass
         elif event == "mouseleave":
-            actions.append({"type": "pointerMove", "x": 0, "y": 0, "origin": "viewport"})
+            # move the mouse someplace else
+            actions = [{"type": "pointerMove", "x": 500, "y": 500, "origin": "pointer"}]
         else:
             raise NotImplementedError(f"unknown event {event}")
 
